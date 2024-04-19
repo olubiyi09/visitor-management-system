@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar"
+import ReduxProvider from "@/components/ReduxProvider";
+import { Toaster } from "sonner";
 
 
 export const metadata: Metadata = {
@@ -16,8 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <ReduxProvider>
+          <Toaster richColors position="top-right" />
+          <Navbar />
+          {children}
+        </ReduxProvider>
       </body>
     </html>
   );

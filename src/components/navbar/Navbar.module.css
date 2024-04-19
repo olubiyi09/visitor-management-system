@@ -9,6 +9,7 @@
     color: #F7C566;
     font-size: 1.5rem;
     font-weight: 500;
+    cursor: pointer;
 }
 
 .header nav ul {
@@ -17,4 +18,8 @@
     column-gap: 1.2rem;
     color: #F7C566;
     font-size: 1.2rem;
+}
+
+.header nav ul li p {
+    cursor: pointer;
 }
