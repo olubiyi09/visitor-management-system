@@ -1,0 +1,86 @@
+.section-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.container {
+    width: 400px;
+    border-radius: 8px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    padding: 6px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    background-color: #F7C566;
+}
+
+.navbar>* {
+    width: 50%;
+}
+
+.navbar button {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: border-bottom-color 0.3s ease;
+}
+
+.navbar button.active {
+    background-color: #6C0345;
+    color: #F7C566;
+}
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 300px;
+}
+
+.loginForm,
+.registerForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.loginForm h2,
+.registerForm h2 {
+    margin-bottom: 10px;
+}
+
+.loginForm input,
+.registerForm input,
+.loginForm button,
+.registerForm button {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+}
+
+.loginForm button,
+.registerForm button {
+    background-color: #6C0345;
+    color: #F7C566;
+    border: none;
+    cursor: pointer;
+}
+
+.loginForm button:hover,
+.registerForm button:hover {
+    background-color: #6C0345;
+    opacity: .9;
+}

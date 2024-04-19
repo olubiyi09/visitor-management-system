@@ -1,0 +1,20 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 5rem;
+    background-color: #6C0345;
+}
+
+.header .logo {
+    color: #F7C566;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.header nav ul {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 1.2rem;
+    color: #F7C566;
+    font-size: 1.2rem;
+}

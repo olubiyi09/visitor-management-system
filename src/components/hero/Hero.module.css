@@ -1,0 +1,41 @@
+.wrapper {
+    background-color: #6C0345;
+    padding: 0 5rem;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 85vh;
+}
+
+.left {
+    color: #F7C566;
+    width: 70%;
+}
+
+.left h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 2.6rem;
+    width: 60%;
+}
+
+.left p {
+    font-size: 1.4rem;
+    width: 90%;
+    margin-top: 1.5rem;
+}
+
+.btn {
+    margin-top: 2rem;
+}
+
+.btn button {
+    background-color: #F7C566;
+    color: #6C0345;
+    padding: .9rem 1.8rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
