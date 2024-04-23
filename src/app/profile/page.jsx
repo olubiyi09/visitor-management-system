@@ -15,13 +15,13 @@ const Profile = () => {
     const [editModalOpen, setEditModalOpen] = useState(false);
     const [editedValues, setEditedValues] = useState({});
     const currentUser = useSelector((state) => state.users.currentUser);
-    const loading = useSelector((state) => state.loaders.loading); // Get loading state from Redux
+    const loading = useSelector((state) => state.loaders.loading);
     const dispatch = useDispatch();
 
     useEffect(() => {
         const getCurrentUser = async () => {
             try {
-                dispatch(setLoading(true)); // Set loading state to true
+                dispatch(setLoading(true));
                 const response = await axios.get("/api/users/currentuser");
                 dispatch(setCurrentUser(response.data.data));
             } catch (error) {
@@ -29,7 +29,7 @@ const Profile = () => {
                 console.error("Error fetching current user:", error);
                 dispatch(setCurrentUser(null));
             } finally {
-                dispatch(setLoading(false)); // Set loading state to false regardless of success or failure
+                dispatch(setLoading(false));
             }
         };
 

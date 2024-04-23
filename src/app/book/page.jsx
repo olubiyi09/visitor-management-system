@@ -7,6 +7,11 @@ import styles from './Book.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'sonner';
 import { FaCircleCheck } from "react-icons/fa6";
+import axios from 'axios';
+import Loader from '@/components/loader/Loader';
+import { setLoading } from '@/redux/loaderSlice';
+import Link from "next/link";
+import { useRouter } from 'next/navigation';
 
 const BookAppointment = () => {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -14,7 +19,9 @@ const BookAppointment = () => {
     const [bookingConfirmed, setBookingConfirmed] = useState(false);
     const [confirmationCode, setConfirmationCode] = useState('');
     const dispatch = useDispatch();
+    const router = useRouter();
     const { currentUser, isLoggedIn } = useSelector((state) => state.users);
+    const { loading } = useSelector((state) => state.loaders)
 
     const availableTimes = [
         '09:00 AM',
@@ -52,25 +59,110 @@ const BookAppointment = () => {
         setSelectedTime(time);
     };
 
-    const handleBookAppointment = () => {
+    // const handleBookAppointment = async () => {
+    //     if (selectedDate && selectedTime) {
+    //         // Here you can handle booking logic, such as sending data to the server
+    //         const code = generateConfirmationCode();
+    //         setConfirmationCode(code);
+
+    //         setBookingConfirmed(true);
+    //     } else {
+    //         toast.error("Select a Date and Time")
+    //     }
+    // };
+
+    // const handleBookAppointment = async () => {
+    //     if (selectedDate && selectedTime) {
+    //         try {
+    //             dispatch(setLoading(true))
+    //             // Prepare data to send to the server
+    //             const data = {
+    //                 userID: currentUser._id, // Assuming currentUser contains user information including _id
+    //                 date: selectedDate,
+    //                 time: selectedTime,
+    //                 fullname: currentUser.fullname,
+    //                 phone: currentUser?.phone || "none",
+    //                 email: currentUser.email,
+    //                 confirmationCode: generateConfirmationCode()
+    //             };
+
+    //             // Make POST request to the server
+    //             const response = await axios.post('/api/bookings', data);
+
+    //             // Handle success response
+    //             console.log(response.data); // Log the response data
+    //             setConfirmationCode(data.confirmationCode);
+    //             setBookingConfirmed(true);
+    //             toast.success(response.data.message)
+    //         } catch (error) {
+    //             // Handle error
+    //             console.error('Error booking appointment:', error);
+    //             toast.error('Error booking appointment. Please try again later.');
+    //         } finally {
+    //             dispatch(setLoading(false))
+    //         }
+    //     } else {
+    //         toast.error("Select a Date and Time");
+    //     }
+    // };
+
+    const handleBookAppointment = async () => {
         if (selectedDate && selectedTime) {
-            // Here you can handle booking logic, such as sending data to the server
-            const code = generateConfirmationCode();
-            setConfirmationCode(code);
-            setBookingConfirmed(true);
+            try {
+                dispatch(setLoading(true));
+                // Prepare data to send to the server
+                const data = {
+                    userID: currentUser._id, // Assuming currentUser contains user information including _id
+                    date: selectedDate,
+                    time: selectedTime,
+                    fullname: currentUser.fullname,
+                    phone: currentUser?.phone || "none",
+                    email: currentUser.email,
+                    confirmationCode: generateConfirmationCode()
+                };
+
+                // Make POST request to the server
+                const response = await axios.post('/api/bookings', data);
+
+                // Handle success response
+                console.log(response.data); // Log the response data
+                setConfirmationCode(data.confirmationCode);
+                setBookingConfirmed(true);
+                toast.success(response.data.message);
+
+                // Reset states after booking confirmation
+                setSelectedDate(new Date());
+                setSelectedTime(null);
+                setBookingConfirmed(true);
+            } catch (error) {
+                // Handle error
+                console.error('Error booking appointment:', error);
+                toast.error('Error booking appointment. Please try again later.');
+            } finally {
+                dispatch(setLoading(false));
+            }
         } else {
-            toast.error("Select a Date and Time")
+            toast.error("Select a Date and Time");
         }
     };
 
+
     const handleModalClose = () => {
         setBookingConfirmed(false);
+        router.push("/bookingHistory")
     };
 
     return (
         <div className={styles.container}>
+            {loading && <Loader />}
             <div>
-                <h2>Book Appointment</h2>
+                <div className={styles.header}>
+                    <h2>Book Appointment</h2>
+                    <p>
+                        <Link href="/bookingHistory">View Booking History</Link>
+                    </p>
+                </div>
+                <hr />
                 <div className={styles.datePickerContainer}>
                     <label>Select a Visitation Date:</label>{" "}
                     <DatePicker

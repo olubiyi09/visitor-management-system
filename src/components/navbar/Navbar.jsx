@@ -67,7 +67,7 @@ const Navbar = () => {
                             <Link href="/">Home</Link>
                         </li>
                         {!loading && isLoggedIn && <li>
-                            <Link href="/">Bookings</Link>
+                            <Link href="/bookingHistory">Bookings</Link>
                         </li>}
 
                         {!loading && isLoggedIn && <li>

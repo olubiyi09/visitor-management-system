@@ -8,6 +8,20 @@
 
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.header p {
+    background-color: #6C0345;
+    color: #F7C566;
+    padding: .3rem .5rem;
+    border-radius: 3px;
+}
+
 .container h2 {
     font-size: 1.5rem;
     font-weight: 700;

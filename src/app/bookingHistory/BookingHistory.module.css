@@ -1,0 +1,30 @@
+.container {
+    padding: 20px;
+}
+
+.container h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #6C0345;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #6C0345;
+    color: #F7C566;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: #F7C566;
+}
