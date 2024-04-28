@@ -30,7 +30,7 @@ const BookingHistory = () => {
         getBookings();
     }, []);
 
-    const userBookings = bookings.filter(booking => booking.userID === currentUser?._id);
+    const userBookings = bookings.filter(booking => booking.userID === currentUser?._id).reverse();
 
     return (
         <div className={styles.container}>
