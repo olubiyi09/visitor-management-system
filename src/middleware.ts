@@ -29,9 +29,9 @@ export async function middleware(request: NextRequest) {
             return NextResponse.redirect(new URL("/authentication", request.nextUrl))
         }
 
-        if (!token && path === "/visitorLog") {
-            return NextResponse.redirect(new URL("/authentication", request.nextUrl))
-        }
+        // if (!token && path === "/visitorLog") {
+        //     return NextResponse.redirect(new URL("/authentication", request.nextUrl))
+        // }
 
 
     } catch (error: any) {
@@ -47,6 +47,6 @@ export const config = {
         "/book",
         "/profile",
         "/admin",
-        "/visitorLog",
+        // "/visitorLog",
     ]
 }
