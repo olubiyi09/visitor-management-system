@@ -9,6 +9,9 @@ const Hero = () => {
     const handNav = () => {
         router.push("/book")
     }
+    const handleNav = () => {
+        router.push("/visitorLog")
+    }
     return (
         <section>
             <div className={styles.wrapper}>
@@ -16,8 +19,13 @@ const Hero = () => {
                     <div className={styles.left}>
                         <h2>MyVisitor Management Application</h2>
                         <p>MyVisitor is an intuitive application that helps you effortlessly track, manage, and organize visitors, ensuring seamless visitor management for your establishment.</p>
-                        <div className={styles.btn}>
-                            <button onClick={handNav}>Book Appointment</button>
+                        <div className={styles["btn-wrapper"]}>
+                            <div className={styles.btn}>
+                                <button onClick={handNav}>Book Appointment</button>
+                            </div>
+                            <div className={styles.btn}>
+                                <button onClick={handleNav}>Visitor Log</button>
+                            </div>
                         </div>
                     </div>
                     <div>

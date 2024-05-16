@@ -39,3 +39,8 @@
     border-radius: 5px;
     font-size: 1.2rem;
 }
+
+.btn-wrapper {
+    display: flex;
+    gap: 2rem;
+}
