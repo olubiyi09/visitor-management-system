@@ -21,6 +21,10 @@ export async function middleware(request: NextRequest) {
             return NextResponse.redirect(new URL("/authentication", request.nextUrl))
         }
 
+        if (!token && path === "/admin") {
+            return NextResponse.redirect(new URL("/authentication", request.nextUrl))
+        }
+
         if (!token && path === "/profile") {
             return NextResponse.redirect(new URL("/authentication", request.nextUrl))
         }
@@ -38,5 +42,6 @@ export const config = {
         "/authentication",
         "/book",
         "/profile",
+        "/admin",
     ]
 }

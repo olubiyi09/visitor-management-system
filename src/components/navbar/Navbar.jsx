@@ -67,8 +67,12 @@ const Navbar = () => {
                             <Link href="/">Home</Link>
                         </li>
                         {!loading && isLoggedIn && <li>
+                            <Link href="/admin">Admin</Link>
+                        </li>}
+                        {!loading && isLoggedIn && <li>
                             <Link href="/bookingHistory">Bookings</Link>
                         </li>}
+
 
                         {!loading && isLoggedIn && <li>
                             <Link href="/profile">Profile</Link>
