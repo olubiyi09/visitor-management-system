@@ -2,13 +2,14 @@
     padding: 20px;
     width: 500px;
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 
 .visitorLog h2 {
     font-size: 1.5rem;
     font-weight: 600;
     color: #6C0345;
+    margin-bottom: 1rem;
 }
 
 .card {
@@ -18,15 +19,26 @@
     margin-top: 20px;
 }
 
+
+.card h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    background-color: #6C0345;
+    color: #F7C566;
+    width: 100%;
+    margin-bottom: .5rem;
+    padding-left: 1rem;
+}
+
 .card h3 {
     margin-top: 0;
 }
 
 .card button {
-    margin-right: 10px;
+    margin-right: 20px;
     background-color: #6C0345;
     color: #F7C566;
-    padding: 5px 10px;
+    padding: 7px 20px;
     margin-top: 1rem;
     border-radius: 3px;
 }
