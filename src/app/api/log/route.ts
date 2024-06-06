@@ -42,3 +42,36 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ error: error.message }, { status: 400 });
     }
 }
+
+
+export async function PUT(request: NextRequest) {
+    try {
+        const { confirmationCode, timeOut } = await request.json();
+
+        if (!confirmationCode || !timeOut) {
+            return NextResponse.json({ error: "Confirmation code and time out are required" }, { status: 400 });
+        }
+
+        // Find the attendance record for the given confirmation code
+        const existingAttendance = await Attendance.findOne({ confirmationCode });
+
+        if (!existingAttendance) {
+            return NextResponse.json({ error: "No attendance record found for this confirmation code" }, { status: 404 });
+        }
+
+        if (!existingAttendance.checkIn) {
+            return NextResponse.json({ error: "You need to check in before checking out" }, { status: 400 });
+        }
+
+        // Update the check-out time
+        existingAttendance.checkOut = timeOut;
+        await existingAttendance.save();
+
+        return NextResponse.json({
+            message: "Time Out recorded successfully",
+            data: existingAttendance
+        });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+}
