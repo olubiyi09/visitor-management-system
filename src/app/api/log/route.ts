@@ -75,3 +75,17 @@ export async function PUT(request: NextRequest) {
         return NextResponse.json({ error: error.message }, { status: 400 });
     }
 }
+
+export async function GET(request: NextRequest) {
+    try {
+        // Fetch all attendance records
+        const attendances = await Attendance.find();
+
+        return NextResponse.json({
+            message: "Attendance records fetched successfully",
+            data: attendances
+        });
+    } catch (error: any) {
+        return NextResponse.json({ error: error.message }, { status: 400 });
+    }
+}
