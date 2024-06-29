@@ -64,23 +64,33 @@ const VisitorLog = () => {
         dispatch(setLoading(true));
         try {
             const matchingBooking = bookings.find(booking => booking.confirmationCode === confirmationCode.trim());
-            if (matchingBooking) {
-                if (matchingBooking.expireAppointment) {
-                    dispatch(setLoading(false));
-                    return;
+            // console.log(matchingBooking.bookingStatus);
+            if (matchingBooking.bookingStatus === "Pending") {
+                toast.error("Appointment not Approved")
+                return;
+            } else {
+
+
+
+                if (matchingBooking) {
+                    if (matchingBooking.expireAppointment) {
+                        dispatch(setLoading(false));
+                        return;
+                    }
+
+                    const attendanceStatus = await checkAttendanceStatus(confirmationCode.trim());
+                    setHasTimedIn(attendanceStatus);
+                    toast.success("Booking Found");
+
+                    setCurrentBooking(matchingBooking);
+                    setVisitorExists(true);
+                    // console.log(expireAppointment);
+                } else {
+                    setVisitorExists(false);
+                    setCurrentBooking(null);
+                    toast.error("Booking not Found, Please check the code");
                 }
 
-                const attendanceStatus = await checkAttendanceStatus(confirmationCode.trim());
-                setHasTimedIn(attendanceStatus);
-                toast.success("Booking Found");
-
-                setCurrentBooking(matchingBooking);
-                setVisitorExists(true);
-                console.log(expireAppointment);
-            } else {
-                setVisitorExists(false);
-                setCurrentBooking(null);
-                toast.error("Booking not Found, Please check the code");
             }
         } catch (error) {
             console.error('Error during verification:', error);
@@ -136,22 +146,6 @@ const VisitorLog = () => {
         }
     };
 
-
-
-    // const handleTimeOut = async () => {
-    //     if (hasTimedIn) {
-    //         const timeOut = new Date().toISOString();
-    //         try {
-    //             // await axios.post('/api/time-out', { confirmationCode, timeOut });
-    //             setHasTimedIn(false);
-    //             toast.success("Time Out recorded!");
-    //         } catch (error) {
-    //             toast.error("Failed to record Time Out. Please try again.");
-    //         }
-    //     } else {
-    //         toast.error("You need to time in first.");
-    //     }
-    // };
 
     return (
         <div className={styles.visitorLog}>
