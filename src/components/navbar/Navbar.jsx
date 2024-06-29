@@ -18,6 +18,7 @@ const Navbar = () => {
     const { loading } = useSelector((state) => state.loaders);
     const { currentUser, isLoggedIn } = useSelector((state) => state.users);
 
+
     const getCurrentUser = async () => {
         try {
             dispatch(setLoading(true));
@@ -56,6 +57,7 @@ const Navbar = () => {
             dispatch(setLoading(false));
         }
     };
+
     return (
         <div>
             {loading && <Loader />}
@@ -66,9 +68,15 @@ const Navbar = () => {
                         <li>
                             <Link href="/">Home</Link>
                         </li>
-                        {!loading && isLoggedIn && <li>
+                        {/* {!loading && isLoggedIn && <li>
                             <Link href="/admin">Admin</Link>
-                        </li>}
+                        </li>} */}
+                        {!loading && isLoggedIn && (currentUser?.email === "danking@mail.com" || currentUser?.email === "seguneweje@outbook.com") && (
+                            <li>
+                                <Link href="/admin">Admin</Link>
+                            </li>
+                        )}
+
                         {!loading && isLoggedIn && <li>
                             <Link href="/bookingHistory">Bookings</Link>
                         </li>}
