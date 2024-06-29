@@ -20,7 +20,7 @@ const AdminUsers = () => {
             const response = await axios.get("/api/users");
             const allUsers = response.data.data;
 
-            console.log(allUsers);
+            // console.log(allUsers);
             setUsers(allUsers)
         } catch (error) {
             console.error('Error fetching users:', error);
