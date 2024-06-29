@@ -59,7 +59,7 @@ const AdminUsers = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {currentUsers.map((user, index) => (
+                        {users.map((user, index) => (
                             <tr key={user._id}>
                                 <td>{indexOfFirstUser + index + 1}</td>
                                 <td>{user?.fullname}</td>
